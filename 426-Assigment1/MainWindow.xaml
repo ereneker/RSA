@@ -1,0 +1,52 @@
+﻿<Window x:Class="_426_Assigment1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_426_Assigment1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Canvas>
+            <TabControl Height="434" Width="800">
+                <TabItem Header="Key Selection">
+                    <Grid Background="#FFE5E5E5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="49*"/>
+                            <ColumnDefinition Width="348*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="FirstPrimeNumber" Content="Enter first prime number (p):" HorizontalAlignment="Left" Margin="20,28,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                        <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Margin="102,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Grid.Column="1"/>
+                        <Label x:Name="FirstPrimeNumber_Copy" Content="Enter second prime number (q):" HorizontalAlignment="Left" Margin="327,32,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <TextBox x:Name="TextBox2" HorizontalAlignment="Left" Margin="521,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Grid.Column="1"/>
+                        <Button x:Name="Calculation" Content="Calculate n and z" HorizontalAlignment="Left" Margin="327,97,0,0" VerticalAlignment="Top" Width="108" Grid.Column="1" Click="Calculation_Click"/>
+                        <Label x:Name="FirstPrimeNumber_Copy1" Content="n is:" HorizontalAlignment="Left" Margin="51,150,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <TextBox x:Name="nTextBox" HorizontalAlignment="Left" Margin="102,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Grid.Column="1"/>
+                        <Label x:Name="FirstPrimeNumber_Copy2" Content="z is:" HorizontalAlignment="Left" Margin="474,154,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <TextBox x:Name="zTextBox" HorizontalAlignment="Left" Margin="521,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Grid.Column="1"/>
+                        <Label x:Name="FirstPrimeNumber_Copy3" Content="Enter e (e&lt;n, prime to z):" HorizontalAlignment="Left" Margin="20,258,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="160"/>
+                        <TextBox x:Name="eTextBox" HorizontalAlignment="Left" Margin="102,262,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Grid.Column="1"/>
+                        <Button x:Name="Calculation_Copy" Content="Calculate keys" HorizontalAlignment="Left" Margin="327,261,0,0" VerticalAlignment="Top" Width="108" Grid.Column="1" Click="Calculation_Copy_Click"/>
+                        <Button x:Name="Calculation_Copy1" Content="Clear" HorizontalAlignment="Left" Margin="582,261,0,0" VerticalAlignment="Top" Width="61" Grid.Column="1"/>
+                        <Button x:Name="Calculation_Copy2" Content="Exit" HorizontalAlignment="Left" Margin="582,320,0,0" VerticalAlignment="Top" Width="61" Grid.Column="1"/>
+                        <Label x:Name="FirstPrimeNumber_Copy4" Content="Your public key is (e), (n)" HorizontalAlignment="Left" Margin="20,322,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="160"/>
+                        <Label x:Name="FirstPrimeNumber_Copy5" Content="Your private key is (d), (n)" HorizontalAlignment="Left" Margin="20,353,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="160"/>
+                        <TextBox x:Name="ePublicKey1" HorizontalAlignment="Left" Margin="102,330,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Grid.Column="1"/>
+                        <TextBox x:Name="dPrivateKey1" HorizontalAlignment="Left" Margin="102,357,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Grid.Column="1"/>
+                        <Label x:Name="FirstPrimeNumber_Copy6" Content="," HorizontalAlignment="Left" Margin="169,322,0,0" VerticalAlignment="Top" Width="11" Grid.Column="1" Height="30"/>
+                        <TextBox x:Name="nPublicKey1" HorizontalAlignment="Left" Margin="185,330,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Grid.Column="1"/>
+                        <TextBox x:Name="nPrivateKey1" HorizontalAlignment="Left" Margin="185,357,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Grid.Column="1"/>
+                        <Label x:Name="FirstPrimeNumber_Copy7" Content="," HorizontalAlignment="Left" Margin="169,349,0,0" VerticalAlignment="Top" Width="11" Grid.Column="1" Height="30"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Encryption">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Decryption" Margin="-2,-2,-2,0">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+            </TabControl>
+        </Canvas>
+
+    </Grid>
+</Window>
