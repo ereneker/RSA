@@ -121,9 +121,22 @@ namespace _426_Assigment1
 
         }
 
+        private void Calculation_Copy1_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox1.Text = "";
+            TextBox2.Text = "";
+            nTextBox.Text = "";
+            zTextBox.Text = "";
+            eTextBox.Text = "";
+            ePublicKey1.Text = "";
+            nPublicKey1.Text = "";
+            dPrivateKey1.Text = "";
+            nPrivateKey1.Text = "";
+        }
+
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
-           
+            this.Close();
         }
 
         private void DecryptButton_Click(object sender, RoutedEventArgs e)
