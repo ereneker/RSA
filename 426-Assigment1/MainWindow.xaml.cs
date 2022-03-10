@@ -12,7 +12,7 @@ namespace _426_Assigment1
     {
         BigInteger n, z, e,d;
         BigInteger dPrivate;
-        string text,text2;
+        String text,text2;
         string cipherText = "";
 
         int strLength;
@@ -178,7 +178,7 @@ namespace _426_Assigment1
                     enTextBox5.Text += m.ToString("X4");
                 }
 
-
+                    
               
 
             }
@@ -231,7 +231,7 @@ namespace _426_Assigment1
 
             char[] letters = text2.ToCharArray();
 
-            for (int i = 0; i < letters.Length; i++)
+            for (int i = 0; i <= text2.Length; i++)
             {
                 count++;                        //039002B90247042901050273003502BF022002B9039C03EB02B9
                 if (count == 4)
