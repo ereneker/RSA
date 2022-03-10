@@ -26,8 +26,8 @@ namespace _426_Assigment1
             InitializeComponent();
         }
 
-        BigInteger aCalculate;
-        public int dCalculate(int z, int ePrime)
+       
+        public int calculateD(int z, int ePrime)
         {
 
             for (int i = 0; i < z; i++)
@@ -42,7 +42,7 @@ namespace _426_Assigment1
         }
 
 
-        public bool PrimeChk() //checks if the number is prime or not
+        public bool CheckPrimeNum() //checks if the number is prime or not
         {
             BigInteger p = int.Parse(TextBox1.Text);
             BigInteger q = int.Parse(TextBox2.Text);
@@ -69,7 +69,7 @@ namespace _426_Assigment1
                 return true;
             return true;
         }
-        public int GetN(int p, int q) //calculates n
+        public int calculateN(int p, int q) //calculates n
         {
             int n = p * q;
             return n;
@@ -86,7 +86,7 @@ namespace _426_Assigment1
     
             ePublicKey1.Text = ePrime.ToString();
             nPublicKey1.Text = nTextBox.Text;
-            dPrivateKey1.Text = dCalculate((int)z, (int)ePrime).ToString();
+            dPrivateKey1.Text = calculateD((int)z, (int)ePrime).ToString();
             nPrivateKey1.Text = nTextBox.Text;
         }
 
@@ -237,7 +237,7 @@ namespace _426_Assigment1
                 if (count == 4)
                 {
                     hex += Convert.ToChar(text2[i - 1]);
-                    int num = Convert.ToInt32(cipherText, 16);
+                    int num = Convert.ToInt32(hex, 16);
 
                     count = 0;
                     decNum = (int)BigInteger.ModPow(num, Convert.ToInt32(d), Convert.ToInt32(n));
