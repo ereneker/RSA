@@ -10,20 +10,37 @@ namespace _426_Assigment1
     /// </summary>
     public partial class MainWindow : Window
     {
-        BigInteger n, z, e;
+        BigInteger n, z, e,d;
         BigInteger dPrivate;
-        string text;
+        string text,text2;
         string cipherText = "";
+
         int strLength;
         BigInteger[] numArr;
-        int num ,m;
-        string numS;
-
+        int num ,m, decNum;
+        string hex;
+        int count = 0;
 
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        BigInteger aCalculate;
+        public int dCalculate(int z, int ePrime)
+        {
+
+            for (int i = 0; i < z; i++)
+            {
+                if (((z * i + 1) % ePrime) == 0)
+                {
+                    return (((z * i) + 1) / ePrime);
+
+                }
+            }
+            return 0;
+        }
+
 
         public bool PrimeChk() //checks if the number is prime or not
         {
@@ -66,19 +83,10 @@ namespace _426_Assigment1
             BigInteger ePrime = int.Parse(eTextBox.Text);
 
             int c = 1;
-            for (int i = 0; i < ePrime; i++)
-            {
-                c = (int)(c * dPrivate % n);
-                c = (int)(c % n);
-            }
-
-
-            c = (int)(ePrime % z);
-            dPrivate = 1 / c;
-
+    
             ePublicKey1.Text = ePrime.ToString();
             nPublicKey1.Text = nTextBox.Text;
-            dPrivateKey1.Text = dPrivate.ToString();
+            dPrivateKey1.Text = dCalculate((int)z, (int)ePrime).ToString();
             nPrivateKey1.Text = nTextBox.Text;
         }
 
@@ -118,6 +126,11 @@ namespace _426_Assigment1
            
         }
 
+        private void DecryptButton_Click(object sender, RoutedEventArgs e)
+        {
+            Decrypt();
+        }
+
         private void encryptButton_Click(object sender, RoutedEventArgs e)
         {
             Encrypt();
@@ -142,47 +155,111 @@ namespace _426_Assigment1
 
             
 
-            List<int> numbers = new List<int>();
-            List<string> hex = new List<string>();
+          
 
-            char[] letters = text.ToCharArray();
+           // char[] letters = text.ToCharArray();
+
+            String letters = enTextBox3.Text;
             for (int i = 0; i < letters.Length; i++)
-            {   
-               
+            {
+
                 cipherInt = Convert.ToInt32(letters[i]);
-                m = cipherInt;
-                int c = 1; 
-                for ( int k = 0; k < e; k++)
-                {
-                    c = c * m % (int)n;
-                    c = c % (int)n;
-                    numbers.Add(c);
-                    numS = c.ToString("X4");
-                    hex.Add(numS);
-                }
+                m = (int)BigInteger.ModPow(cipherInt, e, n);
                 
-                foreach (int mynum in numbers)
+               
+                if (i == letters.Length - 1)
                 {
-
-                    enTextBox4.Text = mynum.ToString();
-                    Console.WriteLine(mynum.ToString());
+                    enTextBox4.Text += m.ToString();
+                    enTextBox5.Text += m.ToString("X4");
+                }
+                else
+                {
+                    enTextBox4.Text += m.ToString() + " ,";
+                    enTextBox5.Text += m.ToString("X4");
                 }
 
-                foreach(string myhex in hex)
-                {
-                    enTextBox5.Text = myhex.ToString();
-                }
 
-                //    foreach(int item in numArr)
-                {
-                //    numArr[i] += num;
-              //      enTextBox4.Text= item.ToString() + ",";
-                }
+              
+
             }
-            
+
+
+
+
+            /* for (int i = 0; i < letters.Length; i++)
+             {   
+
+                 cipherInt = Convert.ToInt32(letters[i]);
+                 m = cipherInt;
+                 int c = 1; 
+                 for ( int k = 0; k < e; k++)
+                 {
+                     c = c * m % (int)n;
+                     c = c % (int)n;
+                     numbers.Add(c);
+                     numS = c.ToString("X4");
+                     hex.Add(numS);
+                 }
+
+                 foreach (int mynum in numbers)
+                 {
+
+                     enTextBox4.Text = mynum.ToString();
+                     Console.WriteLine(mynum.ToString());
+                 }
+
+                 foreach(string myhex in hex)
+                 {
+                     enTextBox5.Text = myhex.ToString();
+                 }
+
+                 //    foreach(int item in numArr)
+                 {
+                 //    numArr[i] += num;
+               //      enTextBox4.Text= item.ToString() + ",";
+                 }
+             }*/
+
         }
 
-        
+        private void Decrypt()
+        {
+            text2 = enTextBox3_Copy.Text.ToString();
+            d = int.Parse(enTextBox1_Copy.Text);
+            n = int.Parse(enTextBox1_Copy1.Text);
+
+
+            char[] letters = text2.ToCharArray();
+
+            for (int i = 0; i < letters.Length; i++)
+            {
+                count++;                        //039002B90247042901050273003502BF022002B9039C03EB02B9
+                if (count == 4)
+                {
+                    hex += Convert.ToChar(text2[i - 1]);
+                    int num = Convert.ToInt32(cipherText, 16);
+
+                    count = 0;
+                    decNum = (int)BigInteger.ModPow(num, Convert.ToInt32(d), Convert.ToInt32(n));
+                    cipherText += Convert.ToChar(decNum);
+                    if(i== letters.Length)
+                    {
+                        enTextBox3_Copy1.Text += num.ToString();
+                    }
+                    else
+                    {
+                        enTextBox3_Copy1.Text += num.ToString() + ",";
+                        enTextBox3_Copy2.Text += cipherText;
+                        hex = "";
+                    }
+                }
+                else
+                {
+                    hex += Convert.ToChar(text2[i - 1]);
+                }
+
+            }
+        }
 
     }
 }
