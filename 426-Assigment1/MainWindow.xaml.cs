@@ -96,6 +96,28 @@ namespace _426_Assigment1
         {
             BigInteger p = int.Parse(TextBox1.Text);
             BigInteger q = int.Parse(TextBox2.Text);
+
+            if (p == 1 || q == 1)
+            {
+                nTextBox.Text = "";
+                zTextBox.Text = "";
+                MessageBox.Show("p & q must be bigger than 1", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+            if ((p < 1) && (p!=0) || ((q < 1) && (q!=0)))
+            {
+                nTextBox.Text = "";
+                zTextBox.Text = "";
+                MessageBox.Show("p & q must be positive ", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+           
+            if (p == 0 || q == 0)
+            {
+                nTextBox.Text = "";
+                zTextBox.Text = "";
+                MessageBox.Show("p & q must be bigger than 0", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
             if (p % 2 != 0)
             {
                 n = p * q;
@@ -132,6 +154,11 @@ namespace _426_Assigment1
             nPublicKey1.Text = "";
             dPrivateKey1.Text = "";
             nPrivateKey1.Text = "";
+        }
+
+        private void copyButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)

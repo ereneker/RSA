@@ -31,8 +31,8 @@
                         <Label x:Name="FirstPrimeNumber_Copy3" Content="Enter e (e&lt;n, prime to z):" HorizontalAlignment="Left" Margin="20,258,0,0" VerticalAlignment="Top" Grid.ColumnSpan="5" Width="160"/>
                         <TextBox x:Name="eTextBox" HorizontalAlignment="Left" Margin="7,262,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Grid.Column="5"/>
                         <Button x:Name="Calculation_Copy" Content="Calculate keys" HorizontalAlignment="Left" Margin="232,261,0,0" VerticalAlignment="Top" Width="108" Grid.Column="5" Click="Calculation_Copy_Click"/>
-                        <Button x:Name="Calculation_Copy1" Content="Clear" HorizontalAlignment="Left" Margin="487,261,0,0" VerticalAlignment="Top" Width="61" Grid.Column="5"/>
-                        <Button x:Name="Calculation_Copy2" Content="Exit" HorizontalAlignment="Left" Margin="487,320,0,0" VerticalAlignment="Top" Width="61" Grid.Column="5"/>
+                        <Button x:Name="Calculation_Copy1" Content="Clear" HorizontalAlignment="Left" Margin="487,261,0,0" VerticalAlignment="Top" Width="61" Grid.Column="5" Click="Calculation_Copy1_Click"/>
+                        <Button x:Name="Calculation_Copy2" Click="exitButton_Click" Content="Exit" HorizontalAlignment="Left" Margin="487,320,0,0" VerticalAlignment="Top" Width="61" Grid.Column="5"/>
                         <Label x:Name="FirstPrimeNumber_Copy4" Content="Your public key is (e), (n)" HorizontalAlignment="Left" Margin="20,322,0,0" VerticalAlignment="Top" Grid.ColumnSpan="5" Width="160"/>
                         <Label x:Name="FirstPrimeNumber_Copy5" Content="Your private key is (d), (n)" HorizontalAlignment="Left" Margin="20,353,0,0" VerticalAlignment="Top" Grid.ColumnSpan="5" Width="160"/>
                         <TextBox x:Name="ePublicKey1" HorizontalAlignment="Left" Margin="7,330,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Grid.Column="5"/>
@@ -58,7 +58,7 @@
                         <TextBox x:Name="enTextBox2" HorizontalAlignment="Left" Margin="211,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="6" Height="18"/>
                         <TextBox x:Name="enTextBox1" HorizontalAlignment="Left" Margin="53,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="6" Height="18"/>
                         <Label Content="," Grid.Column="6" HorizontalAlignment="Left" Margin="185,31,0,0" VerticalAlignment="Top" Height="26" Width="13"/>
-                        <Button x:Name="copyButton" Content="Copy" Grid.Column="6" HorizontalAlignment="Left" Margin="406,29,0,0" VerticalAlignment="Top" Height="27" Width="60"/>
+                        <Button x:Name="copyButton" Content="Copy" Grid.Column="6" HorizontalAlignment="Left" Margin="406,29,0,0" VerticalAlignment="Top" Height="27" Width="60" Click="copyButton_Click"/>
                         <Label Content="Enter plaintext:" Grid.Column="4" HorizontalAlignment="Left" Margin="30,88,0,0" VerticalAlignment="Top" Height="26" Width="89"/>
                         <Button x:Name="encryptButton" Content="Encrypt" Grid.Column="6" HorizontalAlignment="Left" Margin="243,158,0,0" VerticalAlignment="Top" Height="29" Width="88" Click="encryptButton_Click"/>
                         <Label Content="Ciphertext(int):" Grid.Column="4" HorizontalAlignment="Left" Margin="30,218,0,0" VerticalAlignment="Top" Height="26" Width="88"/>
