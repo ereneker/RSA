@@ -12,8 +12,6 @@ namespace _426_Assigment1
     {
         BigInteger n, z, e;
         BigInteger dPrivate;
-        string text;
-        string cipherText = "";
         int strLength;
         BigInteger[] numArr;
         int num, m;
@@ -25,7 +23,7 @@ namespace _426_Assigment1
             InitializeComponent();
         }
 
-        public bool PrimeChk() //checks if the number is prime or not
+        public bool PrimeNumberCheck() //checks if the number is prime or not
         {
             BigInteger p = int.Parse(TextBox1.Text);
             BigInteger q = int.Parse(TextBox2.Text);
@@ -52,44 +50,47 @@ namespace _426_Assigment1
                 return true;
             return true;
         }
-        public int GetN(int p, int q) //calculates n
+        public int GetN(int p, int q)
         {
             int n = p * q;
             return n;
         }
-        int aCalculate;
-        public int dCalculate(int z, int e)
+        BigInteger aCalculate;
+        public int dCalculate(int z, int ePrime)
         {
-            
-            for (int k = 0; k < z; k++)
+          
+            for (int i = 0; i < z; i++)
             {
-                if (((z * k + 1) % e) == 0)
+                if (((z * i + 1) % ePrime) == 0)
                 {
-                    aCalculate = (((z * k) + 1) / e);
+                    return (((z * i) + 1) / ePrime);
+                    
                 }
             }
-            return aCalculate;
+            return 0;
         }
 
 
         private void Calculation_Copy_Click(object sender, RoutedEventArgs e)
         {
-            BigInteger ePrime = int.Parse(eTextBox.Text);
+            
 
             int c = 1;
-            for (int i = 0; i < ePrime; i++)
-            {
-                c = (int)(c * dPrivate % n);
-                c = (int)(c % n);
-            }
+            //for (int i = 0; i < z; i++)
+            //{
+            //    if (((z * i + 1) % ePrime) == 0)
+            //    {
+            //        aCalculate = (((z * i) + 1) / ePrime);
+            //    }
+            //}
+            
 
+            BigInteger ePrime = int.Parse(eTextBox.Text);
 
-            c = (int)(ePrime % z);
-            dPrivate = 1 / c;
 
             ePublicKey1.Text = ePrime.ToString();
             nPublicKey1.Text = nTextBox.Text;
-            dPrivateKey1.Text = dPrivate.ToString();
+            dPrivateKey1.Text =dCalculate((int)z, (int)ePrime).ToString();
             nPrivateKey1.Text = nTextBox.Text;
         }
 
@@ -111,7 +112,7 @@ namespace _426_Assigment1
 
             nTextBox.Text = n.ToString();
             zTextBox.Text = z.ToString();
-
+            IfEIsNull(int.Parse(nTextBox.Text), int.Parse(zTextBox.Text));
         }
 
         private void clearButton_Click(object sender, RoutedEventArgs e)
@@ -126,7 +127,7 @@ namespace _426_Assigment1
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
-
+            System.Environment.Exit(0);
         }
 
         private void encryptButton_Click(object sender, RoutedEventArgs e)
@@ -134,21 +135,34 @@ namespace _426_Assigment1
             Encrypt();
         }
 
-        private void GetValues()
+        private void GetKeyValues()
         {
             e = int.Parse(enTextBox1.Text);
             n = int.Parse(enTextBox2.Text);
 
         }
+        private int IfEIsNull(int n, int z)
+        {
+            Random random = new Random();
+            int ePrime;
+            while (true)
+            {
+                ePrime=random.Next(n);
+                if (z % ePrime > 0 || z % ePrime < 0)
+                {
+                    if(PrimeNumberCheck())
+                        return ePrime;
+                }
+            }
 
+        }
 
         private void Encrypt()
         {
 
-            text = enTextBox3.Text.ToString();
+            String text = enTextBox3.Text.ToString();
             strLength = text.Length;
-            e = int.Parse(enTextBox1.Text);
-            n = int.Parse(enTextBox2.Text);
+            GetKeyValues();
             int cipherInt;
 
 
@@ -169,9 +183,12 @@ namespace _426_Assigment1
                     if (i == letters.Length - 1)
                     {
                         enTextBox4.Text += m.ToString();
+                        enTextBox5.Text += m.ToString("X4");
                     }else
                     {
                         enTextBox4.Text += m.ToString()+" ,";
+                        enTextBox5.Text+=m.ToString("X4");
+
                     }
                 
                 
@@ -187,21 +204,112 @@ namespace _426_Assigment1
                 //    Console.WriteLine(mynum.ToString());
                 //}
 
-                foreach (string myhex in hex)
-                {
-                    enTextBox5.Text = myhex.ToString();
-                }
+                //foreach (string myhex in hex)
+                //{
+                //    enTextBox5.Text = myhex.ToString();
+                //}
 
                 //    foreach(int item in numArr)
-                {
+                //{
                     //    numArr[i] += num;
                     //      enTextBox4.Text= item.ToString() + ",";
-                }
+                //}
             }
+        }
+
+        private void decryptButton_Click(object sender, RoutedEventArgs e)
+        {
+            Decrypt();
+        }
+
+        private void copyButton_Click(object sender, RoutedEventArgs e)
+        {
+            enTextBox1.Text = ePublicKey1.Text;
+            enTextBox2.Text = nPublicKey1.Text;
+        }
+
+        private void Calculation_Copy2_Click(object sender, RoutedEventArgs e)
+        {
+            System.Environment.Exit(0);
+        }
+
+        private void Calculation_Copy1_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox1.Text = "";
+            TextBox2.Text = "";
+            nTextBox.Text = "";
+            zTextBox.Text = "";
+            eTextBox.Text = "";
+            ePublicKey1.Text = "";
+            nPublicKey1.Text = "";
+            dPrivateKey1.Text = "";
+            nPrivateKey1.Text = "";
+        }
+
+        private void clearButton_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            enTextBox1_Copy.Text = "";
+            enTextBox1_Copy1.Text = "";
+            enTextBox3_Copy.Text = "";
+            enTextBox3_Copy1.Text = "";
+            enTextBox3_Copy2.Text = "";
 
         }
 
+        private void exitButton_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            System.Environment.Exit(0);
+        }
 
+        private void copyButton_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            enTextBox1_Copy.Text = dPrivateKey1.Text;
+            enTextBox1_Copy1.Text = nPrivateKey1.Text;
+        }
+
+        int decNum;
+        
+        BigInteger d;
+
+        private void Decrypt()
+        {
+            String text2 = enTextBox3_Copy.Text;
+            String cipherText = "";
+            string hex = "";
+
+
+            int count = 0;
+            char[] letters = text2.ToCharArray();
+
+            for (int i = 0; i <= text2.Length; i++)
+            {
+                count++;                        //039002B90247042901050273003502BF022002B9039C03EB02B9
+                if (count == 4)
+                {
+                    hex += Convert.ToChar(text2[i - 1]);
+                    int num = Convert.ToInt32(hex, 16);
+
+                    count = 0;
+                    decNum = (int)BigInteger.ModPow(num, Convert.ToInt32(enTextBox1.Text), Convert.ToInt32(enTextBox1_Copy1.Text));
+                    cipherText += Convert.ToChar(decNum);
+                    if (i == text2.Length)
+                    {
+                        enTextBox3_Copy1.Text += num.ToString();
+                    }
+                    else
+                    {
+                        enTextBox3_Copy1.Text += num.ToString() + ",";
+                        enTextBox3_Copy2.Text = cipherText;
+                        hex = "";
+                    }
+                }
+                else
+                {
+                    hex += Convert.ToChar(text2[i - 1]);
+                }
+
+            }
+        }
 
     }
 }
